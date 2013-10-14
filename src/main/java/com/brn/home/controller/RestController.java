@@ -28,7 +28,7 @@ public class RestController {
         this.employeeManager = employeeManager;
     }
 
-    @RequestMapping("employe/{id}")
+    @RequestMapping("employee/{id}")
     @ResponseBody
     public List<EmployeeEntity> getEmployeById(@PathVariable Long id) {
         return employeeManager.getAllEmployees();
