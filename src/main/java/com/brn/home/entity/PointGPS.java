@@ -1,5 +1,7 @@
 package com.brn.home.entity;
 
+import javax.persistence.*;
+
 /**
  * Created with IntelliJ IDEA.
  * User: bruno
@@ -7,9 +9,19 @@ package com.brn.home.entity;
  * Time: 8:16 PM
  * To change this template use File | Settings | File Templates.
  */
+@Entity
+@Table(name = "POINT_GPS")
 public class PointGPS {
 
+    @Id
+    @Column(name = "ID_POINT_GPS")
+    @GeneratedValue
+    private Integer id;
+
+    @Column(name ="LATITUDE")
     private double latitude;
+
+    @Column(name = "LONGITUDE")
     private double longitude;
 
     public PointGPS() {

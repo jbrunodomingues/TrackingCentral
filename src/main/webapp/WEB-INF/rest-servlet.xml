@@ -56,6 +56,8 @@
 
     <bean id="employeeDAO" class="com.brn.home.dao.EmployeeDAOImpl"/>
     <bean id="employeeManager" class="com.brn.home.service.EmployeeManagerImpl"/>
+    <bean id="trackManager" class="com.brn.home.service.TrackManagerImpl"/>
+    <bean id="trackDAO" class="com.brn.home.dao.TrackDAOImpl"/>
 
     <tx:annotation-driven />
 

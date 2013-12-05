@@ -1,7 +1,9 @@
 package com.brn.home.controller;
 
 import com.brn.home.entity.EmployeeEntity;
+import com.brn.home.entity.PointGPS;
 import com.brn.home.service.EmployeeManager;
+import com.brn.home.service.TrackManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,15 +24,24 @@ import java.util.List;
 public class RestController {
 
     private EmployeeManager employeeManager;
+    private TrackManager trackManager;
 
     @Autowired
-    public RestController(EmployeeManager employeeManager) {
+    public RestController(EmployeeManager employeeManager, TrackManager trackManager) {
         this.employeeManager = employeeManager;
+        this.trackManager = trackManager;
     }
 
     @RequestMapping("employee/{id}")
     @ResponseBody
     public List<EmployeeEntity> getEmployeById(@PathVariable Long id) {
         return employeeManager.getAllEmployees();
+    }
+
+    @RequestMapping("track/batatas")
+    @ResponseBody
+    public void addPoint() {
+        PointGPS pointGPS = new PointGPS(2345, 3245);
+        trackManager.addPoint(pointGPS);
     }
 }
