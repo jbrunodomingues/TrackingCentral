@@ -18,7 +18,7 @@ public class PointGPS {
     @GeneratedValue
     private Integer id;
 
-    @Column(name ="LATITUDE")
+    @Column(name = "LATITUDE")
     private double latitude;
 
     @Column(name = "LONGITUDE")
@@ -57,19 +57,27 @@ public class PointGPS {
         return result;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public double getLatitude() {
         return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
     }
 
     public double getLongitude() {
         return longitude;
     }
 
-    public void setLatitude(long latitude) {
-        this.latitude = latitude;
-    }
-
-    public void setLongitude(long longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 }
