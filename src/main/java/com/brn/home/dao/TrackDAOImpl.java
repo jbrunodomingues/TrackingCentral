@@ -1,6 +1,7 @@
 package com.brn.home.dao;
 
 import com.brn.home.entity.PointGPS;
+import com.brn.home.entity.Track;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,5 +21,10 @@ public class TrackDAOImpl implements TrackDAO {
     @Override
     public void addPoint(PointGPS pointGPS) {
         this.sessionFactory.getCurrentSession().save(pointGPS);
+    }
+
+    @Override
+    public void addTrack(Track track) {
+        this.sessionFactory.getCurrentSession().save(track);
     }
 }

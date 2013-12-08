@@ -1,6 +1,7 @@
 package com.brn.home.dao;
 
 import com.brn.home.entity.PointGPS;
+import com.brn.home.entity.Track;
 
 /**
  * Created by IntelliJ IDEA.
@@ -10,4 +11,6 @@ import com.brn.home.entity.PointGPS;
  */
 public interface TrackDAO {
     void addPoint(PointGPS pointGPS);
+
+    void addTrack(Track track);
 }

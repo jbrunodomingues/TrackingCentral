@@ -15,7 +15,7 @@ public class PointGPS {
 
     @Id
     @Column(name = "ID_POINT_GPS")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "LATITUDE")
@@ -23,6 +23,11 @@ public class PointGPS {
 
     @Column(name = "LONGITUDE")
     private double longitude;
+
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "REFID_TRACK")
+//    private Track track;
+
 
     public PointGPS() {
     }
@@ -80,4 +85,12 @@ public class PointGPS {
     public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
+
+//    public Track getTrack() {
+//        return track;
+//    }
+//
+//    public void setTrack(Track track) {
+//        this.track = track;
+//    }
 }
