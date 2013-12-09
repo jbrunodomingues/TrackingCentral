@@ -86,11 +86,12 @@ public class PointGPS {
         this.longitude = longitude;
     }
 
-//    public Track getTrack() {
-//        return track;
-//    }
-//
-//    public void setTrack(Track track) {
-//        this.track = track;
-//    }
+    @Override
+    public String toString() {
+        return "PointGPS{" +
+                "id=" + id +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                '}';
+    }
 }

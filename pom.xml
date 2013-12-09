@@ -10,6 +10,8 @@
 
     <properties>
         <org.springframework.version>3.2.4.RELEASE</org.springframework.version>
+        <jackson.version>1.9.13</jackson.version>
+        <jdk.version>1.7</jdk.version>
     </properties>
 
     <dependencies>
@@ -173,6 +175,12 @@
             <version>${org.springframework.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- Jackson JSON Mapper -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>TrakingCentral</finalName>
@@ -182,7 +190,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.0</version>
                 <configuration>
-                    <compilerVersion>1.7</compilerVersion>
+                    <compilerVersion>${jdk.version}</compilerVersion>
                 </configuration>
             </plugin>
         </plugins>

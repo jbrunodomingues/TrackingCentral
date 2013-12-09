@@ -1,14 +1,14 @@
 package com.brn.home.controller;
 
-import com.brn.home.entity.EmployeeEntity;
 import com.brn.home.entity.PointGPS;
 import com.brn.home.entity.Track;
-import com.brn.home.service.EmployeeManager;
 import com.brn.home.service.TrackManager;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -22,24 +22,28 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Controller
-@RequestMapping("api")
-public class RestController {
-
-    @Autowired
-    private EmployeeManager employeeManager;
+@RequestMapping("track")
+public class TrackController {
 
     @Autowired
     private TrackManager trackManager;
 
-    @RequestMapping("employee/{id}")
+    @RequestMapping(value = "all", method = RequestMethod.GET)
     @ResponseBody
-    public List<EmployeeEntity> getEmployeById(@PathVariable Long id) {
-        return employeeManager.getAllEmployees();
+    @Transactional
+    public List<Track> readAll() {
+        List<Track> trackList = trackManager.readAll();
+        /*
+            Virtual proxy only works inside a transaction but when the proxy is delegated to jasckon library it gets
+            out of transactional scope. Probably AOP fires after return. When in debug works fine.
+         */
+        Hibernate.initialize(trackList);
+        return trackList;
     }
 
-    @RequestMapping("track/batatas")
+    @RequestMapping(value = "track/batatas", method = RequestMethod.GET)
     @ResponseBody
-    public void addPoint() {
+    public void createTrack() {
         List<PointGPS> pointGPSList = new ArrayList<PointGPS>(5);
         pointGPSList.add(new PointGPS(2345, 3245));
         pointGPSList.add(new PointGPS(4242, 3245));
@@ -48,11 +52,7 @@ public class RestController {
         pointGPSList.add(new PointGPS(9854, 3245));
         Track track = new Track();
         track.setPointGPSList(pointGPSList);
-        trackManager.addTrack(track);
-    }
-
-    public void setEmployeeManager(EmployeeManager employeeManager) {
-        this.employeeManager = employeeManager;
+        trackManager.createTrack(track);
     }
 
     public void setTrackManager(TrackManager trackManager) {

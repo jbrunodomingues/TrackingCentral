@@ -3,6 +3,8 @@ package com.brn.home.service;
 import com.brn.home.entity.PointGPS;
 import com.brn.home.entity.Track;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * User: bruno
@@ -12,5 +14,9 @@ import com.brn.home.entity.Track;
 public interface TrackManager {
     void addPoint(PointGPS pointGPS);
 
-    void addTrack(Track track);
+    void createTrack(Track track);
+
+    Track readTrack();
+
+    List<Track> readAll();
 }

@@ -28,26 +28,6 @@ public class Track {
     public Track() {
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Track track = (Track) o;
-
-        if (id != null ? !id.equals(track.id) : track.id != null) return false;
-        if (pointGPSList != null ? !pointGPSList.equals(track.pointGPSList) : track.pointGPSList != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (pointGPSList != null ? pointGPSList.hashCode() : 0);
-        return result;
-    }
-
     public void setPointGPSList(List<PointGPS> pointGPSList) {
         this.pointGPSList = pointGPSList;
     }
@@ -92,5 +72,33 @@ public class Track {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Track track = (Track) o;
+
+        if (id != null ? !id.equals(track.id) : track.id != null) return false;
+        if (pointGPSList != null ? !pointGPSList.equals(track.pointGPSList) : track.pointGPSList != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (pointGPSList != null ? pointGPSList.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Track{" +
+                "id=" + id +
+                ", pointGPSList=" + pointGPSList +
+                '}';
     }
 }

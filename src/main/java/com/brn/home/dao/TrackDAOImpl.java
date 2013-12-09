@@ -6,6 +6,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Created by IntelliJ IDEA.
  * User: bruno
@@ -24,7 +26,18 @@ public class TrackDAOImpl implements TrackDAO {
     }
 
     @Override
-    public void addTrack(Track track) {
+    public void createTrack(Track track) {
         this.sessionFactory.getCurrentSession().save(track);
+    }
+
+    @Override
+    public Track readTrack() {
+        return null;
+    }
+
+    @Override
+    public List<Track> readAll() {
+        List<Track> trackList = this.sessionFactory.getCurrentSession().createCriteria(Track.class).list();
+        return trackList;
     }
 }
