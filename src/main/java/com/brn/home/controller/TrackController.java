@@ -3,7 +3,6 @@ package com.brn.home.controller;
 import com.brn.home.entity.PointGPS;
 import com.brn.home.entity.Track;
 import com.brn.home.service.TrackManager;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,12 +31,10 @@ public class TrackController {
     @ResponseBody
     @Transactional
     public List<Track> readAll() {
-        List<Track> trackList = trackManager.readAll();
         /*
-            Virtual proxy only works inside a transaction but when the proxy is delegated to jasckon library it gets
-            out of transactional scope. Probably AOP fires after return. When in debug works fine.
+            It's no longer throwing exception but is returning null list :s
          */
-        Hibernate.initialize(trackList);
+        List<Track> trackList = trackManager.readAll();
         return trackList;
     }
 
