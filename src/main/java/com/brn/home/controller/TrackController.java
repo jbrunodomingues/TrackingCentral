@@ -3,6 +3,9 @@ package com.brn.home.controller;
 import com.brn.home.entity.PointGPS;
 import com.brn.home.entity.Track;
 import com.brn.home.service.TrackManager;
+import org.dozer.DozerBeanMapper;
+import org.dozer.DozerBeanMapperSingletonWrapper;
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,9 +34,6 @@ public class TrackController {
     @ResponseBody
     @Transactional
     public List<Track> readAll() {
-        /*
-            It's no longer throwing exception but is returning null list :s
-         */
         List<Track> trackList = trackManager.readAll();
         return trackList;
     }

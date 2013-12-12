@@ -3,6 +3,8 @@ package com.brn.home.service;
 import com.brn.home.dao.TrackDAO;
 import com.brn.home.entity.PointGPS;
 import com.brn.home.entity.Track;
+import org.dozer.DozerBeanMapperSingletonWrapper;
+import org.dozer.Mapper;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +45,7 @@ public class TrackManagerImpl implements TrackManager {
 
     @Override
     public List<Track> readAll() {
-        return trackDAO.readAll();
+        List<Track> trackList = trackDAO.readAll();
+        return trackList;
     }
 }
