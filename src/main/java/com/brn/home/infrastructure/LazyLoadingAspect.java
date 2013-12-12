@@ -17,9 +17,9 @@ import java.util.List;
  * This class serves for getting rid of lazy initialization exception when jackson was serializing. Basically because
  * jackson inner serialization methods where called after the end of transaction when the virtual proxy tried to
  * access the database there was no longer any open session to play with. With this aspect joint point at the end of
- * return of my controller method I force the lazy load by using a library called dozer. This way I can have the lazy
- * loading working properly at service layer level but when the controller returns the beans it loads all the lazy
- * loaded elements.
+ * return of my controller method (application layer) I force the lazy load by using a library called dozer. This way
+ * I can have the lazy loading working properly at service layer level but when the controller returns the bean it
+ * loads all the lazy loaded elements.
  */
 @Aspect
 public class LazyLoadingAspect {
