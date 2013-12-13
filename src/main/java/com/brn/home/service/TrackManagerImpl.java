@@ -33,19 +33,18 @@ public class TrackManagerImpl implements TrackManager {
 
     @Override
     @Transactional
-    public void createTrack(Track track) {
+    public void create(Track track) {
         trackDAO.createTrack(track);
-    }
-
-    @Override
-    public Track readTrack() {
-        Track track = trackDAO.readTrack();
-        return track;
     }
 
     @Override
     public List<Track> readAll() {
         List<Track> trackList = trackDAO.readAll();
         return trackList;
+    }
+
+    @Override
+    public Track read(int id) {
+        return trackDAO.readTrack(id);
     }
 }

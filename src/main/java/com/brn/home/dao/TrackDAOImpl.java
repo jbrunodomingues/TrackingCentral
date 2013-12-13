@@ -2,7 +2,11 @@ package com.brn.home.dao;
 
 import com.brn.home.entity.PointGPS;
 import com.brn.home.entity.Track;
+import com.brn.home.infrastructure.NoDataFoundException;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -31,13 +35,21 @@ public class TrackDAOImpl implements TrackDAO {
     }
 
     @Override
-    public Track readTrack() {
-        return null;
-    }
-
-    @Override
     public List<Track> readAll() {
         List<Track> trackList = this.sessionFactory.getCurrentSession().createCriteria(Track.class).list();
         return trackList;
+    }
+
+    @Override
+    public Track readTrack(int id) {
+        Session session = this.sessionFactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(Track.class);
+        criteria.add(Restrictions.eq("id", id));
+        List<Track> list = criteria.list();
+        if (list.size() > 0) {
+            return list.get(0);
+        } else {
+            throw new NoDataFoundException("exception_no_track_for_id");
+        }
     }
 }

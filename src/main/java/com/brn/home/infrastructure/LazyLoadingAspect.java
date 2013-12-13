@@ -4,6 +4,7 @@ package com.brn.home.infrastructure;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.dozer.DozerBeanMapperSingletonWrapper;
 import org.dozer.Mapper;
 import org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint;
@@ -24,7 +25,10 @@ import java.util.List;
 @Aspect
 public class LazyLoadingAspect {
 
-    @After("execution (* com.brn.home.controller.TrackController.readAll())")
+    /*
+        Will only intercept methods that return non void.
+     */
+    @After("execution (public !void com.brn.home.controller.TrackController.*(..))")
     public void logBefore(JoinPoint joinPoint) throws Throwable {
         Object returnObject = ((MethodInvocationProceedingJoinPoint) joinPoint).proceed();
         Mapper mapper = DozerBeanMapperSingletonWrapper.getInstance();

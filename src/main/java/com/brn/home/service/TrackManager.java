@@ -14,9 +14,9 @@ import java.util.List;
 public interface TrackManager {
     void addPoint(PointGPS pointGPS);
 
-    void createTrack(Track track);
-
-    Track readTrack();
+    void create(Track track);
 
     List<Track> readAll();
+
+    Track read(int id);
 }

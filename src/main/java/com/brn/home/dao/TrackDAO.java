@@ -16,7 +16,7 @@ public interface TrackDAO {
 
     void createTrack(Track track);
 
-    Track readTrack();
-
     List<Track> readAll();
+
+    Track readTrack(int id);
 }
