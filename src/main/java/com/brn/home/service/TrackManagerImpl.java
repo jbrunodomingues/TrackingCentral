@@ -3,14 +3,10 @@ package com.brn.home.service;
 import com.brn.home.dao.TrackDAO;
 import com.brn.home.entity.PointGPS;
 import com.brn.home.entity.Track;
-import org.dozer.DozerBeanMapperSingletonWrapper;
-import org.dozer.Mapper;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,24 +23,31 @@ public class TrackManagerImpl implements TrackManager {
 
     @Override
     @Transactional
-    public void addPoint(PointGPS pointGPS) {
-        trackDAO.addPoint(pointGPS);
+    public void addPoint(int id, PointGPS pointGPS) {
+        Track track = trackDAO.read(id);
+        track.getPointGPSList().add(pointGPS);
+        trackDAO.update(track);
     }
 
     @Override
     @Transactional
     public void create(Track track) {
-        trackDAO.createTrack(track);
+        trackDAO.create(track);
     }
 
     @Override
-    public List<Track> readAll() {
-        List<Track> trackList = trackDAO.readAll();
+    public List<Track> read() {
+        List<Track> trackList = trackDAO.read();
         return trackList;
     }
 
     @Override
     public Track read(int id) {
-        return trackDAO.readTrack(id);
+        return trackDAO.read(id);
+    }
+
+    @Override
+    public void update(Track track) {
+        trackDAO.update(track);
     }
 }

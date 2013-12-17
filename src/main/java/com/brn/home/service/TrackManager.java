@@ -12,11 +12,13 @@ import java.util.List;
  * Time: 10:46 PM
  */
 public interface TrackManager {
-    void addPoint(PointGPS pointGPS);
+    void addPoint(int id, PointGPS pointGPS);
 
     void create(Track track);
 
-    List<Track> readAll();
+    List<Track> read();
 
     Track read(int id);
+
+    void update(Track track);
 }

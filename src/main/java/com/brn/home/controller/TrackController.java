@@ -18,17 +18,17 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @Controller
-@RequestMapping("track")
+@RequestMapping("tracks")
 public class TrackController {
 
     @Autowired
     private TrackManager trackManager;
 
-    @RequestMapping(value = "all", method = RequestMethod.GET)
+    @RequestMapping(value = "", method = RequestMethod.GET)
     @ResponseBody
     @Transactional
     public List<Track> readAll() {
-        return trackManager.readAll();
+        return trackManager.read();
     }
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET)
@@ -38,25 +38,34 @@ public class TrackController {
         return trackManager.read(id);
     }
 
-    @RequestMapping(value = "batatas", method = RequestMethod.PUT)
+    @RequestMapping(value = "", method = RequestMethod.POST)
     @ResponseBody
     @Transactional
     public void create(@RequestBody Track track) {
-//        List<PointGPS> pointGPSList = new ArrayList<PointGPS>(5);
-//        pointGPSList.add(new PointGPS(2345, 3245));
-//        pointGPSList.add(new PointGPS(4242, 3245));
-//        pointGPSList.add(new PointGPS(5434, 3245));
-//        pointGPSList.add(new PointGPS(5423, 3245));
-//        pointGPSList.add(new PointGPS(9854, 3245));
-//        Track track = new Track();
-//        track.setPointGPSList(pointGPSList);
         trackManager.create(track);
     }
 
-    @RequestMapping(value = "point", method = RequestMethod.PUT)
+    @RequestMapping(value = "{id}", method = RequestMethod.PUT)
     @ResponseBody
     @Transactional
-    public void create(@RequestBody PointGPS pointGPS) {
-        System.out.println(pointGPS);
+    public void update(@RequestBody Track track, @PathVariable int id) {
+        trackManager.update(track);
+    }
+
+    @RequestMapping(value = "{id}/pointsGPS", method = RequestMethod.GET)
+    @ResponseBody
+    @Transactional
+    public List<PointGPS> readPointGPSList(@PathVariable int id) {
+        return trackManager.read(id).getPointGPSList();
+    }
+
+    @RequestMapping(value = "{id}/pointsGPS", method = RequestMethod.PUT)
+    @ResponseBody
+    @Transactional
+    public void addPointGPSToTrack(@PathVariable int id, @RequestBody PointGPS pointGPS) {
+        /*
+            Maybe I should create a manager to points considering that I will have operations over them
+         */
+        trackManager.addPoint(id, pointGPS);
     }
 }

@@ -14,9 +14,11 @@ import java.util.List;
 public interface TrackDAO {
     void addPoint(PointGPS pointGPS);
 
-    void createTrack(Track track);
+    void create(Track track);
 
-    List<Track> readAll();
+    List<Track> read();
 
-    Track readTrack(int id);
+    Track read(int id);
+
+    void update(Track track);
 }

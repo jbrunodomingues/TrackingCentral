@@ -30,18 +30,18 @@ public class TrackDAOImpl implements TrackDAO {
     }
 
     @Override
-    public void createTrack(Track track) {
+    public void create(Track track) {
         this.sessionFactory.getCurrentSession().save(track);
     }
 
     @Override
-    public List<Track> readAll() {
+    public List<Track> read() {
         List<Track> trackList = this.sessionFactory.getCurrentSession().createCriteria(Track.class).list();
         return trackList;
     }
 
     @Override
-    public Track readTrack(int id) {
+    public Track read(int id) {
         Session session = this.sessionFactory.getCurrentSession();
         Criteria criteria = session.createCriteria(Track.class);
         criteria.add(Restrictions.eq("id", id));
@@ -51,5 +51,11 @@ public class TrackDAOImpl implements TrackDAO {
         } else {
             throw new NoDataFoundException("exception_no_track_for_id");
         }
+    }
+
+    @Override
+    public void update(Track track) {
+        read(track.getId());
+        this.sessionFactory.getCurrentSession().save(track);
     }
 }
