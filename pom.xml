@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.brn.home</groupId>
-    <artifactId>TrakingCentral</artifactId>
+    <artifactId>TrackingCentral</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>TrakingCentral Maven Webapp</name>
+    <name>TrackingCentral Maven Webapp</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -199,7 +199,7 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>TrakingCentral</finalName>
+        <finalName>TrackingCentral</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
